@@ -1,6 +1,7 @@
 #pragma once
 #include "SceneBase.h"
 #include "player.h"
+#include "Shot.h"
 #include <vector>
 
 class Enemy;
@@ -19,7 +20,7 @@ public:
 		m_hPlayerGraghic = -1;
 		m_hEnemyGraghic = -1;
 		//m_hObjectGrahic = -1;
-
+		//m_pShot = nullptr;
 	}
 	virtual ~SceneMain() {}
 
@@ -37,18 +38,22 @@ private:
 	int m_hitEnemyCount; //敵に弾が当たった時のカウント
 	int m_hitObjectCount; //オブジェクトに弾が当たった時のカウント
 
+	static constexpr int kShotNum = 1;
+
 	//プレイヤーグラフィックハンドル
 	int m_hPlayerGraghic;
 	int m_hEnemyGraghic;
-	int m_hPlayerShotGraghic;
+	int m_hShotGraghic;
 	int m_hBackgroundGraphic;
 
 	//プレイヤー
 	Player m_player;
+	Shot m_shot[kShotNum];
 
 	//std::vector<Object*> m_pObjectVt;
 	std::vector<Player*> m_pPlayerVt;
 	std::vector<Enemy*>  m_pEnemyVt;
+	//std::vector<Shot*>  m_pShotVt;
 };
 
 //#pragma once

@@ -14,17 +14,17 @@ public:
 	virtual ~Enemy() {}
 
 	// グラフィックデータ設定
-	void setHandle(int handle) { m_handle = handle; }
+	virtual void setHandle(int handle) { m_handle = handle; }
 
-	void init();
+	virtual void init();
 
-	void set(Vec2 pos);
+	virtual void set(Vec2 pos);
 
-	void end();
+	virtual void end();
 
-	void update();
+	virtual void update();
 
-	void draw();
+	virtual void draw();
 
 	bool isExist() { return m_isExist; }
 

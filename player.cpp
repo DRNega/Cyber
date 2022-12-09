@@ -7,15 +7,13 @@
 namespace
 {
 	//プレイヤーの左右移動速度
-	constexpr float kSpeed = 4.0f;
+	constexpr float kSpeed = 10.0f;
 
 	//プレイヤーのサイズ
-	constexpr int kSize = 25.0f;
+	constexpr int kSizeX = 80.0f;
+	constexpr int kSizeY = 25.0f;
 
-	//ショット間隔
-	constexpr int kShotInterval = 30;
 }
-
 
 Player::Player()
 {
@@ -30,8 +28,8 @@ void Player::init()
 {
 	m_pos.x = Game::kScreenWidth / 2;
 	m_pos.y = Game::kScreenHeight - 100.0f;
-	m_colSize.x = kSize;
-	m_colSize.y = kSize;
+	m_colSize.x = kSizeX;
+	m_colSize.y = kSizeY;
 	//m_vec.x = kSpeed;
 
 	m_shotInterval = 0;
@@ -82,18 +80,29 @@ void Player::draw()
 }
 
 
-//弾の当たり判定
-bool Player::isCol(Shot& shot)
-{
-	// 存在していない場合
-	if (!m_isExist)return false;
-	//if (!shot.isExist()) return false;
-
-	
-	return true;
-}
+////弾の当たり判定
+//bool Player::isCol(Shot& shot)
+//{
+//	// 存在していない場合
+//	if (!m_isExist)return false;
+//	//if (!shot.isExist()) return false;
+//
+//	
+//	return true;
+//}
 
 void Player::playerDead()
 {
 	m_isExist = false;
+}
+
+void Player::bound(Vec2 targetPos)
+{
+	// 反射方向
+	Vec2 boundDir = m_pos - targetPos;
+	// 現在の速度と同じ速度にする
+	float Daizen = m_vec.length();
+
+	// 反射方向に現在の速度で移動するようにする
+	m_vec = boundDir.normalize() * Daizen;
 }

@@ -2,8 +2,6 @@
 
 #include "Vec2.h"
 
-class Shot;
-
 class SceneMain;
 
 class Player
@@ -13,20 +11,20 @@ public:
 	virtual ~Player() {}
 
 	// グラフィックデータ設定
-	void setHandle(int handle) { m_handle = handle; }
+	virtual void setHandle(int handle) { m_handle = handle; }
 
-	void init();
+	virtual void init();
 
-	void setMain(SceneMain* pMain) { m_pMain = pMain; }
+	virtual void setMain(SceneMain* pMain) { m_pMain = pMain; }
 
-	void update();
+	virtual void update();
 
-	void draw();
+	virtual void draw();
 
 	bool isExist() { return m_isExist; }
 
 	//弾との当たり判定
-	bool isCol(Shot& shot);
+	//bool isCol(Shot& shot);
 
 	void playerDead();
 
@@ -39,6 +37,9 @@ public:
 	// 情報の取得
 	Vec2 getPos() const { return m_pos; }
 	Vec2 getColSize() const { return m_colSize; }
+
+	// ほかの敵に当たった場合の反射処理
+	virtual void bound(Vec2 targetPos);
 
 private:
 

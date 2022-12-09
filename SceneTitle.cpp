@@ -7,7 +7,7 @@
 
 void SceneTitle::init()
 {
-	m_textPosX = 250;
+	m_textPosX = 125;
 	m_textPosY = 300;
 	// ”wŒi‰æ‘œ
 	m_hBackgroundGraphic = LoadGraph(Game::kBackgroundGraph);
